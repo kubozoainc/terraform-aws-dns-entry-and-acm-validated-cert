@@ -2,7 +2,6 @@
 
 variable "subdomain" {
   type        = string
-  default     = ""
   description = "Subdomain for the project"
 }
 
@@ -35,6 +34,7 @@ variable "subdomain_ns_ttl" {
 variable "subject_alternative_names" {
   type        = list(string)
   description = "A list of the SAN (Subject Alternative Name) domain names that should be included as part of the certificate"
+  default     = []
 }
 
 variable "allow_dns_validation_record_overwrite" {
@@ -46,4 +46,5 @@ variable "allow_dns_validation_record_overwrite" {
 variable "tags" {
   type        = map(string)
   description = "Tags for the certificate"
+  default     = {}
 }

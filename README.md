@@ -36,7 +36,7 @@ Happy Terraforming!
 
 ```
 module "dns_with_cert" {
-    source = "kubozoa/dns-entry-and-acm-validated-cert"
+    source = "kubozoainc/dns-entry-and-acm-validated-cert/aws"
 
     create_subdomain   = true
     subdomain          = "myproject.mydomain.com"
@@ -65,7 +65,7 @@ data "aws_route53_zone" "parent" {
 }
 
 module "dns_with_cert" {
-    source = "kubozoa/dns-entry-and-acm-validated-cert"
+    source = "kubozoainc/dns-entry-and-acm-validated-cert/aws"
 
     create_subdomain   = true
     subdomain          = "myproject.mydomain.com"
@@ -90,7 +90,7 @@ module "dns_with_cert" {
 
 ```
 module "dns_with_cert" {
-    source = "kubozoa/dns-entry-and-acm-validated-cert"
+    source = "kubozoainc/dns-entry-and-acm-validated-cert/aws"
 
     create_subdomain   = false
     subdomain          = "myproject.mydomain.com"
@@ -120,9 +120,9 @@ module "dns_with_cert" {
 
 ## Input Variables
 
-* `subdomain`
+* `subdomain` *
 
-    Subdomain for the project e.g. myproject.mysub.domain.com . Default: `""`
+    Mandatory. Subdomain for the project e.g. myproject.mysub.domain.com.
 
 * `create_subdomain`
 
