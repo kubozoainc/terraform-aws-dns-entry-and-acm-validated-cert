@@ -174,20 +174,13 @@ No modules.
 
 * https://github.com/terraform-docs/terraform-docs
 
-***
-
 ## Author
 
 <a href="https://github.com/kubozoainc" target="_blank">Kubozoa</a> and its awesome talented team members. 
 
-***
-
 ## License
 
 See LICENSE for more information
-
-
-***
 
 ## Contact Kubozoa
 
