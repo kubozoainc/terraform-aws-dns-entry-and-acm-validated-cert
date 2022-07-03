@@ -118,52 +118,61 @@ module "dns_with_cert" {
 
 ***
 
-## Input Variables
+## Requirements
 
-* `subdomain` *
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.13.0 |
 
-    Mandatory. Subdomain for the project e.g. myproject.mysub.domain.com.
+## Providers
 
-* `create_subdomain`
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.13.0 |
 
-    Whether or not to create the subdomain for the project. Default: `true`
+## Modules
 
-* `subdomain_zone_description`
+No modules.
 
-    Description field for the hosted zone entry. Default: `Managed by Terraform`
+## Resources
 
-* `parent_zone_id`
+| Name | Type |
+|------|------|
+| [aws_acm_certificate.cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate) | resource |
+| [aws_acm_certificate_validation.validate_cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate_validation) | resource |
+| [aws_route53_record.subdomain_ns](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_record.validate_cert_domain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_zone.subdomain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
+| [aws_route53_zone.parent_domain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
+| [aws_route53_zone.subdomain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
-    Route53 Zone ID of the parent domain. Default: `""`
+## Inputs
 
-* `subdomain_ns_ttl`
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_allow_dns_validation_record_overwrite"></a> [allow\_dns\_validation\_record\_overwrite](#input\_allow\_dns\_validation\_record\_overwrite) | Whether or not to allow the overwriting of the Route53 CNAME DNS records that are used to validate the certificate. | `bool` | `true` | no |
+| <a name="input_create_subdomain"></a> [create\_subdomain](#input\_create\_subdomain) | Whether or not to create the subdomain for the project | `bool` | `true` | no |
+| <a name="input_parent_zone_id"></a> [parent\_zone\_id](#input\_parent\_zone\_id) | Route53 Zone ID of the parent domain | `string` | `""` | no |
+| <a name="input_subdomain"></a> [subdomain](#input\_subdomain) | Subdomain for the project | `string` | n/a | yes |
+| <a name="input_subdomain_ns_ttl"></a> [subdomain\_ns\_ttl](#input\_subdomain\_ns\_ttl) | Time to live (TTL) for the DNS record. | `string` | `"60"` | no |
+| <a name="input_subdomain_zone_description"></a> [subdomain\_zone\_description](#input\_subdomain\_zone\_description) | Description field for the hosted zone entry. Defaults to Managed by Terraform | `string` | `"Managed by Terraform"` | no |
+| <a name="input_subject_alternative_names"></a> [subject\_alternative\_names](#input\_subject\_alternative\_names) | A list of the SAN (Subject Alternative Name) domain names that should be included as part of the certificate | `list(string)` | `[]` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags for the certificate | `map(string)` | `{}` | no |
 
-    Time to live (TTL) for the DNS record. Default: `"60"`
+## Outputs
 
-* `subject_alternative_names`
-
-    A list of the SAN (Subject Alternative Name) domain names that should be included as part of the certificate. Default: `null`
-
-* `allow_dns_validation_record_overwrite`
-
-    Whether or not to allow the overwriting of the Route53 CNAME DNS records that are used to validate the certificate. Default: `true`
-
-* `tags`
-
-    Tags for the certificate. Default: `null`
+| Name | Description |
+|------|-------------|
+| <a name="output_certificate_arn"></a> [certificate\_arn](#output\_certificate\_arn) | ARN for the validated certificate |
+| <a name="output_zone_id"></a> [zone\_id](#output\_zone\_id) | The hosted zone id for the subdomain that was created or used |
 
 
 ***
 
-## Outputs
+## Acknowledgements
 
-* `zone_id`
-
-    The hosted zone id for the subdomain that was created or used
-
-* `certificate_arn`
-
-    Amazon Resource Name (ARN) for the validated certificate
+* https://github.com/terraform-docs/terraform-docs
 
 ***
 
